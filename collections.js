@@ -77,10 +77,10 @@ const strToObj = (params) => {
 
 const superTypeOf = (params) => {
   if (params === null) {
-    return null;
+    return 'null';
   }
   if (params === undefined) {
-    return undefined;
+    return 'undefined';
   }
   return Object.prototype.toString.call(params).slice(8 ,-1);
 };
