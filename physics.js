@@ -1,6 +1,6 @@
 const getAcceleration = (gg) => {
   if (gg == {}) {
-    return "impossible";
+    return 'impossible';
   }
 
   let Δv = "";
@@ -39,5 +39,5 @@ const getAcceleration = (gg) => {
   if (d != "" && t != "") {
     return (2 * d) / t ** 2;
   }
-  return "impossible";
+  return 'impossible';
 };
