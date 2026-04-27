@@ -12,11 +12,11 @@ const whisper = (str) => {
   return "*" + str.toLocaleLowerCase() + "*";
 };
 const capitalize = (str) => {
-  console.log(str);
+  str = str.toLocaleLowerCase()
   str = words(str);
-  console.log(str);
   for (let i = 0; i < str.length; i++) {
     str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
   }
   return sentence(str);
 };
+
