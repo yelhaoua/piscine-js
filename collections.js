@@ -23,7 +23,7 @@ const strToSet = (params) => {
 const mapToObj = (params) => {
   const obj = {};
   params.forEach((val, key) => {
-    obj[val] = key;
+    obj[key] = val;
   });
 
   return obj;
@@ -60,3 +60,12 @@ const strToObj = (params) => {
   }
   return obj;
 };
+
+console.log(
+  mapToObj(
+    new Map([
+      ["ctx", "ctx"],
+      ["a", 2],
+    ]),
+  ),
+);
