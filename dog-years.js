@@ -28,5 +28,3 @@ const dogYears = (planet, seconds) => {
       break;
   }
 };
-
-console.log(dogYears("earth", 1000000000));
