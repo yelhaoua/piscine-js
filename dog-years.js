@@ -1,7 +1,7 @@
 const dogYears = (planet, seconds) => {
   switch (planet) {
     case "earth":
-      return (seconds / 31557600) * 7;
+      return String(((seconds / 31557600) * 7).toFixed(2));
 
     case "mercury":
       return String((((seconds / 31557600) * 7) / 0.2408467).toFixed(2));
@@ -28,3 +28,5 @@ const dogYears = (planet, seconds) => {
       break;
   }
 };
+
+console.log(dogYears("earth", 1000000000));
