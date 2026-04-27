@@ -13,10 +13,5 @@ const whisper = (str) => {
 };
 const capitalize = (str) => {
   str = str.toLocaleLowerCase()
-  str = words(str);
-  for (let i = 0; i < str.length; i++) {
-    str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
-  }
-  return sentence(str);
+  return  str.charAt(0).toUpperCase() + str.slice(1);
 };
-
