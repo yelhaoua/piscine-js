@@ -1,46 +1,16 @@
-const getAcceleration = (gg) => {
-    console.log(1);
-    
-  if (Object.keys(gg) == 0) {
-    return 'impossible';
+const getAcceleration = (obj) => {
+  if (Object.keys(obj).length == 0) {
+    return "impossible";
+  }
+  if (Object.hasOwn(obj, "Δv") && Object.hasOwn(obj, "Δt")) {
+    return obj["Δv"] / obj["Δt"];
+  }
+  if (Object.hasOwn(obj, "f") && Object.hasOwn(obj, "m")) {
+    return obj["f"] / obj["m"];
+  }
+  if (Object.hasOwn(obj, "d") && Object.hasOwn(obj, "t")) {
+    return (2 * obj["f"]) / obj["m"] ** 2;
   }
 
-  let Δv = "";
-  let Δt = "";
-  let f,
-    d,
-    t,
-    m = "";
-
-  for (let key in gg) {
-    if (key === "Δv") {
-      Δv = gg[key];
-    }
-    if (key === "Δt") {
-      Δt = gg[key];
-    }
-    if (key === "f") {
-      f = gg[key];
-    }
-    if (key === "m") {
-      m = gg[key];
-    }
-    if (key === "d") {
-      d = gg[key];
-    }
-    if (key === "t") {
-      t = gg[key];
-    }
-  }
-  if (Δt != "" && Δv != "") {
-    return Δv / Δt;
-  }
-  if (f != "" && m != "") {
-    return f / m;
-  }
-  if (d != "" && t != "") {
-    return (2 * d) / t ** 2;
-  }
-  return 'impossible';
+  return "impossible";
 };
-
