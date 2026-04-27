@@ -82,5 +82,5 @@ const superTypeOf = (params) => {
   if (params === undefined) {
     return undefined;
   }
-  return Object.prototype.toString.call().slice(8 ,-1);
+  return Object.prototype.toString.call(params).slice(8 ,-1);
 };
