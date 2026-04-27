@@ -1,8 +1,3 @@
-const person = {
-  name: "Rick",
-  age: 77,
-  country: "Helo",
-};
 person.age++
 person.country = "FR"
 const clone1 = { ...person };
