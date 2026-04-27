@@ -3,7 +3,7 @@ is.num = (params) => {
 };
 
 is.nan = (params) => {
-  return isNaN(params) ? true : false;
+  return Number.isNaN(params) ? true : false;
 };
 is.str = (params) => {
   return typeof params === "string" ? true : false;
