@@ -3,5 +3,8 @@ const isPositive = (params) => {
 };
 
 const abs = (params) => {
+  if (params === 0) {
+    return params;
+  }
   return isPositive(params) ? params : params * -1;
 };
