@@ -1,5 +1,7 @@
 const getAcceleration = (gg) => {
-  if (gg == {}) {
+    console.log(1);
+    
+  if (Object.keys(gg) == 0) {
     return 'impossible';
   }
 
@@ -41,3 +43,4 @@ const getAcceleration = (gg) => {
   }
   return 'impossible';
 };
+
