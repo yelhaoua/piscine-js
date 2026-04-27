@@ -1,2 +1,2 @@
-const smalls = Number.MIN_SAFE_INTEGER;
-const biggie = Number.MIN_SAFE_INTEGER;
+const smalls = Number.MIN_VALUE;
+const biggie = Number.MIN_VALUE;
