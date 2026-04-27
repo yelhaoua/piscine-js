@@ -9,7 +9,7 @@ const getAcceleration = (obj) => {
     return obj["f"] / obj["m"];
   }
   if (Object.hasOwn(obj, "d") && Object.hasOwn(obj, "t")) {
-    return (2 * obj["f"]) / obj["m"] ** 2;
+    return (2 * obj["d"]) / obj["t"] ** 2;
   }
 
   return "impossible";
