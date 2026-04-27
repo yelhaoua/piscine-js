@@ -21,7 +21,7 @@ is.arr = (params) => {
   return Array.isArray(params) ? true : false;
 };
 is.obj = (params) => {
-  return params !== null && typeof params === "object" ? true : false;
+  return params !== null && typeof params === "object" && !Array.isArray(params) ? true : false;
 };
 is.fun = (params) => {
   return typeof params === "function" ? true : false;
