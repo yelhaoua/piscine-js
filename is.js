@@ -1,6 +1,8 @@
-(is.num = (params) => {
-  return typeof params === "number" ? true : false;
-})(
+const is = {}(
+  (is.num = (params) => {
+    return typeof params === "number" ? true : false;
+  }),
+)(
   (is.nan = (params) => {
     return isNaN(params) ? true : false;
   }),
