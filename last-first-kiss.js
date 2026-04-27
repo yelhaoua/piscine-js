@@ -7,5 +7,5 @@ function last(params) {
 }
 
 const kiss = (params) => {
-  return params[params.length - 1], params[0];
+  return [params[params.length - 1], params[0]];
 };
