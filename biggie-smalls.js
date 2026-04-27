@@ -1,2 +1,2 @@
-const smalls = Number.MIN_VALUE;
+const smalls = -1.7976931348623157e308;
 const biggie = 7976931348623157e308;
