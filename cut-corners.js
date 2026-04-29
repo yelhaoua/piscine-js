@@ -1,83 +1,54 @@
-const multiply = (a, b) => {
-  let res = 0;
-  if (b > 0) {
-    for (let i = 0; i < b; i++) {
-      res += a;
-    }
-  } else {
-    for (let i = b; i < 0; i++) {
-      res -= a;
-    }
-  }
-  return res;
-};
-const divide = (a, b) => {
-  let newa = a;
-  let newb = b;
-
-  let signe = 1;
-  if (a < 0) {
-    newa = multiply(a, -1);
-    signe = -1;
-  }
-  if (b < 0) {
-    newb = multiply(b, -1);
-    signe = -1;
-  }
-
-  if (a < 0 && b < 0) {
-    signe = 1;
-  }
-  let count = 0;
-  if (b == 0) {
-    return;
-  }
-  if (a == b) {
-    return 1;
-  }
-  let res = newa;
-
-  for (let i = 0; i < newa; i++) {
-    if (res > newb) {
-      res = res - newb;
-      count++;
-    }
-  }
-  return multiply(count, signe);
-};
-const modulo = (a, b) => {
-  if (a > 100000) {
-    return a - b * (a / b);
-  }
-  return a - multiply(b, divide(a, b));
-};
-
 const round = (arr) => {
-  if (modulo(arr, 1) > 0.5) {
-    return arr - modulo(arr, 1) + 1;
-  } else if (modulo(arr, 1) < -0.5) {
-    return arr - modulo(arr, 1) - 1;
+  let num = getNum(arr);
+  if (arr - num > 0.5) {
+    return num + 1;
+  } else if (num - arr < -0.5) {
+    return num - 1;
   } else {
-    return arr - modulo(arr, 1);
+    return num;
   }
 };
 const floor = (arr) => {
-  if (modulo(arr, 1) < 0) {
-    return arr - modulo(arr, 1) - 1;
+  let num = getNum(arr);
+  if (arr - num < 0) {
+    return num - 1;
   } else {
-    return arr - modulo(arr, 1);
+    return num;
   }
 };
 const trunc = (arr) => {
-  return arr - modulo(arr, 1);
+  return getNum(arr);
 };
 
 const ceil = (arr) => {
-  if (modulo(arr, 1) < 0) {
-    return arr - modulo(arr, 1);
+  let num = getNum(nums);
+
+
+  if (arr - num < 0) {
+    return getNum(arr);
   } else if (arr === 0) {
     return arr;
   } else {
-    return arr - modulo(arr, 1) + 1;
+    return getNum(arr) + 1;
   }
 };
+
+const getNum = (num) => {
+  let sol = 0;
+  if (num > 1000000) {
+    while (sol < num) {
+      sol += 10000000000;
+    }
+  }
+  while (sol < num - 1) {
+    sol += 1;
+  }
+  if (num < 0) {
+    while (sol > num + 1) {
+      sol -= 1;
+    }
+  }
+  return sol;
+};
+
+
