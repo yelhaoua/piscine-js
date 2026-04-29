@@ -1,38 +1,33 @@
 const round = (arr) => {
   let num = getNum(arr);
-  if (arr - num > 0.5) {
-    return num + 1;
-  } else if (num - arr < -0.5) {
-    return num - 1;
+  if (num > 0) {
+    return arr - num + 1;
   } else {
-    return num;
+    return arr - num;
   }
 };
 const floor = (arr) => {
   let num = getNum(arr);
-  if (arr - num < 0) {
-    return num - 1;
+  if (num < 0) {
+    return arr - num - 1;
   } else {
-    return num;
+    return arr - num;
   }
 };
 const trunc = (arr) => {
-  if (getNum(arr) > 0) {
-    return getNum(arr);
+  if (arr < 0) {
+    return arr - getNum(arr) + 1;
   }
-  return getNum(arr) +1;
+  return arr - getNum(arr);
 };
 
 const ceil = (arr) => {
-  let num = getNum(nums);
-
-  if (arr - num < 0) {
-    return getNum(arr)+1;
-  } else if (arr === 0) {
-    return arr;
-  } else {
-    return getNum(arr) + 1;
+  let num = getNum(arr);
+  if (arr < 0) {
+    return arr - num + 1;
   }
+
+  return arr - num +1 ;
 };
 
 const getNum = (num) => {
@@ -43,15 +38,13 @@ const getNum = (num) => {
     }
   }
   if (num < 0) {
-    while (sol > num) {
+    while (sol > num - 1) {
       sol -= 1;
     }
   }
   while (sol < num - 1) {
     sol += 1;
-    console.log(sol);
   }
 
-  return sol;
+  return num - sol;
 };
-
