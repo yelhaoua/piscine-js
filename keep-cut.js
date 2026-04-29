@@ -37,7 +37,8 @@ const keepFirstLast = (txt) => {
   if (txt.length <= 2) {
     return keepFirst(txt);
   }
+  if (txt.length === 3) {
+    return keepFirst(txt) + txt[txt.length - 1];
+  }
   return keepFirst(txt) + keepLast(txt);
 };
-
-console.log(keepFirstLast("af"));
