@@ -50,17 +50,3 @@ const getNum = (num) => {
   return sol - num;
 };
 
-const nums12 = Array.from({ length: 20 }, () => (Math.random() - 0.5) * 20);
-
-console.log(nums12.map(Math.round));
-console.log(nums12.map(round));
-
-console.log(nums12.map(Math.ceil) === nums12.map(ceil));
-console.log(nums12.map(ceil));
-
-console.log(nums12.map(Math.floor));
-console.log(nums12.map(floor));
-
-console.log(nums12.map(Math.trunc));
-console.log(nums12.map(trunc));
-
