@@ -72,7 +72,11 @@ const trunc = (arr) => {
 const ceil = (arr) => {
   if (modulo(arr, 1) < 0) {
     return (arr = arr - modulo(arr, 1));
+  } else if (arr === 0) {
+    return arr;
   } else {
     return (arr = arr - modulo(arr, 1) + 1);
   }
 };
+
+console.log([4, -3, 3, -2, 0].map(ceil));
