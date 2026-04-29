@@ -17,15 +17,17 @@ const floor = (arr) => {
   }
 };
 const trunc = (arr) => {
-  return getNum(arr);
+  if (getNum(arr) > 0) {
+    return getNum(arr);
+  }
+  return getNum(arr) +1;
 };
 
 const ceil = (arr) => {
   let num = getNum(nums);
 
-
   if (arr - num < 0) {
-    return getNum(arr);
+    return getNum(arr)+1;
   } else if (arr === 0) {
     return arr;
   } else {
@@ -40,15 +42,16 @@ const getNum = (num) => {
       sol += 10000000000;
     }
   }
-  while (sol < num - 1) {
-    sol += 1;
-  }
   if (num < 0) {
-    while (sol > num + 1) {
+    while (sol > num) {
       sol -= 1;
     }
   }
+  while (sol < num - 1) {
+    sol += 1;
+    console.log(sol);
+  }
+
   return sol;
 };
-
 
