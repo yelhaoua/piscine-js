@@ -44,7 +44,7 @@ const divide = (a, b) => {
     }
   }
 
-  return count * signe;
+  return multiply(count  , signe);
 };
 const modulo = (a, b) => {
   return a - multiply(b, divide(a, b));
