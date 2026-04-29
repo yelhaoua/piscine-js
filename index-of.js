@@ -15,7 +15,7 @@ const indexOf = (arr, value, start) => {
 };
 const lastIndexOf = (arr, value) => {
   let index = -1;
-  for (let i = arr.length - 1; i >= a; i--) {
+  for (let i = arr.length - 1; i >= 0; i--) {
     if (arr[i] === value) {
       return i;
     }
@@ -24,7 +24,7 @@ const lastIndexOf = (arr, value) => {
 };
 const includes = (arr, value) => {
   let index = false;
-  for (let i = arr.length - 1; i >= a; i--) {
+  for (let i = arr.length - 1; i >= 0; i--) {
     if (arr[i] === value) {
       return true;
     }
