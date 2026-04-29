@@ -50,41 +50,29 @@ const modulo = (a, b) => {
 };
 
 const round = (arr) => {
-  for (let i = 0; i < arr.length; i++) {
-    if (modulo(arr[i], 1) > 0.5) {
-      arr[i] = arr[i] - modulo(arr[i], 1) + 1;
-    } else if (modulo(arr[i], 1) < -0.5) {
-      arr[i] = arr[i] - modulo(arr[i], 1) - 1;
-    } else {
-      arr[i] = arr[i] - modulo(arr[i], 1);
-    }
+  if (modulo(arr, 1) > 0.5) {
+    return (arr = arr - modulo(arr, 1) + 1);
+  } else if (modulo(arr, 1) < -0.5) {
+    return (arr = arr - modulo(arr, 1) - 1);
+  } else {
+    return (arr = arr - modulo(arr, 1));
   }
-  return arr;
 };
 const floor = (arr) => {
-  for (let i = 0; i < arr.length; i++) {
-    if (modulo(arr[i], 1) < 0) {
-      arr[i] = arr[i] - modulo(arr[i], 1) - 1;
-    } else {
-      arr[i] = arr[i] - modulo(arr[i], 1);
-    }
+  if (modulo(arr, 1) < 0) {
+    return (arr = arr - modulo(arr, 1) - 1);
+  } else {
+    return (arr = arr - modulo(arr, 1));
   }
-  return arr;
 };
 const trunc = (arr) => {
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] = arr[i] - modulo(arr[i], 1);
-  }
-  return arr;
+  return (arr = arr - modulo(arr, 1));
 };
 
 const ceil = (arr) => {
-  for (let i = 0; i < arr.length; i++) {
-    if (modulo(arr[i], 1) < 0) {
-      arr[i] = arr[i] - modulo(arr[i], 1);
-    } else {
-      arr[i] = arr[i] - modulo(arr[i], 1) + 1;
-    }
+  if (modulo(arr, 1) < 0) {
+    return (arr = arr - modulo(arr, 1));
+  } else {
+    return (arr = arr - modulo(arr, 1) + 1);
   }
-  return arr;
 };
