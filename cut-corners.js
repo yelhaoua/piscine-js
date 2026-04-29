@@ -78,5 +78,3 @@ const ceil = (arr) => {
     return (arr = arr - modulo(arr, 1) + 1);
   }
 };
-
-console.log([4, -3, 3, -2, 0].map(ceil));
