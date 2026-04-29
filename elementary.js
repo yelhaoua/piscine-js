@@ -2,15 +2,12 @@ const multiply = (a, b) => {
   let res = 0;
   if (b > 0) {
     for (let i = 0; i < b; i++) {
-      res += a;
+        res += a;
     }
   } else {
     for (let i = b; i < 0; i++) {
       res -= a;
     }
-  }
-  for (let i = 0; i < b; i++) {
-    res += a;
   }
   return res;
 };
@@ -34,3 +31,4 @@ const divide = (a, b) => {
 const modulo = (a, b) => {
   return a - multiply(b, divide(a, b));
 };
+console.log(multiply(34, 78));
