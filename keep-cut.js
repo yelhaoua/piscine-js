@@ -34,5 +34,10 @@ const keepLast = (txt) => {
   return arr.join("");
 };
 const keepFirstLast = (txt) => {
+  if (txt.length <= 2) {
+    return keepFirst(txt);
+  }
   return keepFirst(txt) + keepLast(txt);
 };
+
+console.log(keepFirstLast("af"));
