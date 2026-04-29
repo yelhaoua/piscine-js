@@ -12,7 +12,22 @@ const multiply = (a, b) => {
   return res;
 };
 const divide = (a, b) => {
-  let res = a;
+  let newa = a;
+  let newb = b;
+
+  let signe = 1;
+  if (a < 0) {
+    newa = multiply(a, -1);
+    signe = -1;
+  }
+  if (b < 0) {
+    newb = multiply(b, -1);
+    signe = -1;
+  }
+
+  if (a < 0 && b < 0) {
+    signe = 1;
+  }
   let count = 0;
   if (b == 0) {
     return;
@@ -20,26 +35,17 @@ const divide = (a, b) => {
   if (a == b) {
     return 1;
   }
-  if (b > 0) {
-    for (let i = 0; i < a; i++) {
-      if (res > b) {
-        res = res - b;
-        count++;
-      }
+  let res = newa;
+
+  for (let i = 0; i < newa; i++) {
+    if (res > newb) {
+      res = res - newb;
+      count++;
     }
-  } else {
-    for (let i = a; i > 0; i--) {
-      if (res > multiply(b, -1)) {
-        res = res - multiply(b, -1);
-        count++;
-      }
-    }
-    return -count
   }
-  return count;
+
+  return count * signe;
 };
 const modulo = (a, b) => {
   return a - multiply(b, divide(a, b));
 };
-console.log(multiply(34, 78));
-console.log(divide(123, -22));
