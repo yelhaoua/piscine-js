@@ -3,16 +3,10 @@ const indexOf = (arr, value, start) => {
     start = 0;
   }
   if (start > arr.length) {
-    console.log("s");
-
     return -1;
   }
   let index = -1;
   for (let i = start; i < arr.length; i++) {
-    console.log(i, arr.length);
-
-    console.log(arr[i], value);
-
     if (arr[i] === value) {
       return i;
     }
