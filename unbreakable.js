@@ -17,17 +17,15 @@ const split = (text, sep) => {
       cout++;
       if (cout === sep.length) {
         res[ind] = woord;
+        cout = 0;
         woord = "";
         ind++;
-        cout = 0;
       }
     } else {
       woord += text[i];
     }
   }
-
   res[ind] = woord;
-
   return res;
 };
 
