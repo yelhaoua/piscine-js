@@ -29,8 +29,9 @@ const split = (text, sep) => {
       woord += text[i];
     }
   }
-  
-  res[ind] = woord;
+  if (woord) {
+    res[ind] = woord;
+  }
   return res;
 };
 
@@ -45,4 +46,3 @@ const join = (arr, sep) => {
   }
   return res;
 };
-
