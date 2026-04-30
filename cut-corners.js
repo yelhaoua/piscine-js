@@ -1,52 +1,47 @@
 const round = (arr) => {
   let num = getNum(arr);
 
-  if (num > 0.5) {
+  if (num > 0.5 && arr > 0) {
     return arr - num + 1;
-  } else {
+  } else if (num > 0.5 && arr < 0) {
+    console.log(num, arr + num);
+    return arr + num - 1;
+  } else if (num < 0.5 && arr > 0) {
     return arr - num;
+  } else if (num < 0.5 && arr < 0) {
+    return arr + num;
   }
 };
 const floor = (arr) => {
   let num = getNum(arr);
-  if (num < 0) {
-    return num - arr;
+  if (arr < 0) {
+    return num + arr - 1;
   } else {
     return arr - num;
   }
 };
 const trunc = (arr) => {
+  if (arr < 0) {
+    return arr + getNum(arr);
+  }
   return arr - getNum(arr);
 };
 
 const ceil = (arr) => {
   let num = getNum(arr);
-  if (num > 0) {
+  if (arr > 0) {
     return arr - num + 1;
   }
-  return arr - num;
+  return arr + num;
 };
 
-const getNum = (num) => {
-  let sol = 0;
-  var loopnum = num;
-  if (loopnum > 1000000) {
-    while (sol < loopnum) {
-      sol += 10000000000;
-    }
+export const getNum = (num) => {
+  let val = num < 0 ? -num : num;
+  let power = 1;
+  while (power * 2 <= val) power *= 2;
+  while (power >= 1) {
+    if (val >= power) val -= power;
+    power /= 2;
   }
-  if (loopnum < 0) {
-    while (sol > loopnum) {
-      sol -= 1;
-    }
-  }
-  while (sol < loopnum) {
-    sol += 1;
-  }
-  if (num < 0) {
-    return num - sol;
-  }
-
-  return sol - num;
+  return val;
 };
-
