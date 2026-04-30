@@ -3,16 +3,16 @@ const nasa = (num) => {
   let i = 1;
   while (i <= num) {
     if (i % 5 == 0 && i % 3 == 0) {
-      txt += "NASA ";
+      txt += " NASA";
     } else if (i % 3 == 0) {
-      txt += "NA ";
+      txt += " NA";
     } else if (i % 5 == 0) {
-      txt += "SA ";
+      txt += " SA";
     } else {
-      txt += i + " ";
+      txt += " " + i;
     }
     i++;
   }
-  return txt;
+  return txt.trimStart();
 };
 
