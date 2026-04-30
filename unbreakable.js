@@ -29,6 +29,7 @@ const split = (text, sep) => {
       woord += text[i];
     }
   }
+  
   res[ind] = woord;
   return res;
 };
