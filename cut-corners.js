@@ -10,7 +10,7 @@ const round = (arr) => {
     return arr - num;
   } else if (num < 0.5 && arr < 0) {
     return arr + num;
-  }
+  }else return arr - num
 };
 const floor = (arr) => {
   let num = getNum(arr);
@@ -45,3 +45,6 @@ export const getNum = (num) => {
   }
   return val;
 };
+
+
+console.log([3, -3, 3, -3, 0].map(round));
