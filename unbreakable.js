@@ -3,6 +3,7 @@ const split = (text, sep) => {
   let cout = 0;
   let woord = "";
   let ind = 0;
+  let nessep = "";
 
   if (sep === "") {
     for (let j = 0; j < text.length; j++) {
@@ -13,25 +14,20 @@ const split = (text, sep) => {
 
   for (let i = 0; i < text.length; i++) {
     if (sep[cout] == text[i]) {
-      res[ind] = woord;
-      woord = "";
-      ind++;
-      for (let j = i; j < text.length - 1; j++) {
-        if (sep[cout] == text[j] && cout < sep.length) {
-          i = j;
-          cout++;
-        } else {
-          cout = 0;
-          break;
-        }
+      cout++;
+      if (cout === sep.length) {
+        res[ind] = woord;
+        woord = "";
+        ind++;
+        cout = 0;
       }
     } else {
       woord += text[i];
     }
   }
-  if (woord) {
-    res[ind] = woord;
-  }
+
+  res[ind] = woord;
+
   return res;
 };
 
