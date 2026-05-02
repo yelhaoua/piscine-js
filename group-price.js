@@ -1,5 +1,5 @@
 const groupPrice = (str) => {
-  const regEx = /([A-Z]{3})(\d+)\.(\d{2})/g;
+  const regEx = /([A-Z]{3}|\$)(\d+)\.(\d{2})/g;
   const result = [];
   let match;
 
