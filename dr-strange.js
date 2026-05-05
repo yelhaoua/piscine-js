@@ -29,6 +29,3 @@ const timeTravel = ({ date, hour, minute, second }) => {
   res.setSeconds(second);
   return res;
 };
-
-
-
