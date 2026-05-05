@@ -1,32 +1,31 @@
+const epoch = new Date("0001-01-01T00:00:00Z");
+
 const addWeek = (time) => {
   const days = [
-    "Sunday",
     "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
     "Friday",
     "Saturday",
+    "Sunday",
+    "secondMonday",
+    "secondTuesday",
+    "secondWednesday",
+    "secondThursday",
+    "secondFriday",
+    "secondSaturday",
+    "secondSunday",
   ];
 
-  let daye = Number(time.getUTCDate());
-  console.log(daye);
-  if (daye > 7) {
-    console.log("second" + days[daye % 7]);
-    return;
-  }
-
-  if (daye === 7) {
-    console.log(days[0]);
-    return;
-  }
-
-  console.log(days[daye]);
+  let day = (time.getTime() - epoch.getTime()) / (1000 * 60 * 60 * 24);
+  return days[day % 14];
 };
 
 const timeTravel = ({ date, hour, minute, second }) => {
-  date.setHours(hour);
-  date.setMinutes(minute);
-  date.setSeconds(second);
-  console.log(date.toString());
+  let res = new Date(date);
+  res.setHours(hour);
+  res.setMinutes(minute);
+  res.setSeconds(second);
+  return res;
 };
