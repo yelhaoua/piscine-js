@@ -21,5 +21,5 @@ const isFuture = (time) => {
 
 const isPast = (time) => {
   const date = new Date(time);
-  return date > Date.now() && isValid(time);
+  return date < Date.now() && isValid(time);
 };
