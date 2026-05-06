@@ -5,6 +5,8 @@ const citiesOnly = (arr) => {
 };
 
 const upperCasingStates = (arr) => {
+
+
   return arr.map((el) => {
     return el
       .split(" ")
@@ -17,7 +19,9 @@ const upperCasingStates = (arr) => {
 
 const fahrenheitToCelsius = (arr) => {
   return arr.map((el) => {
-    return ((parseInt(el) - 32) / 1.8).toFixed() + "°C";
+    return !el.includes("C")
+      ? Math.floor((parseInt(el) - 32) / 1.8) + "°C"
+      : el;
   });
 };
 
@@ -37,14 +41,9 @@ const trimTemp = (arr) => {
 const tempForecasts = (arr) => {
   return arr.map((el) => {
     arr = trimTemp(arr);
-    const C = fahrenheitToCelsius([arr[0].temperature]) ;
-
+    const C = fahrenheitToCelsius([el.temperature]);
     return (
-      C +
-      "elsius in " +
-      citiesOnly(arr) +
-      ", " +
-      upperCasingStates([arr[0].state])
+      C + "elsius in " + citiesOnly([el]) + ", " + upperCasingStates([el.state])
     );
   });
 };
