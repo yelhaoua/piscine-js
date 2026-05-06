@@ -6,7 +6,6 @@ const firstDayWeek = (week, year) => {
     return formatDate(date);
   }
   let nextMonday;
-
   if (date.getDay() === 1) {
     nextMonday = 7;
   } else {
