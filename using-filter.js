@@ -41,12 +41,10 @@ const filter1DistinctVowel = (arr) => {
   return arr.filter((el) => {
     const vol = CheckVoles(el.toLowerCase());
     for (let i = 0; i < vol.length; i++) {
-      console.log(el.includes(vol[i]), el, vol[i]);
       if (el.includes(vol[i])) {
         flag = true;
       }
     }
-
     if (!flag) {
       return el;
     }
@@ -74,3 +72,24 @@ function CheckVoles(str) {
   }
   return voel;
 }
+
+const multiFilter = (arr) => {
+  return arr.filter((el) => {
+    if (
+      el.capital.length >= 8 &&
+      !el.name.toLowerCase().startsWith("a") &&
+      !el.name.toLowerCase().startsWith("e") &&
+      !el.name.toLowerCase().startsWith("i") &&
+      !el.name.toLowerCase().startsWith("o") &&
+      !el.name.toLowerCase().startsWith("u") &&
+      (el.tag.toLowerCase().includes("a") ||
+        el.tag.toLowerCase().includes("e") ||
+        el.tag.toLowerCase().includes("i") ||
+        el.tag.toLowerCase().includes("o") ||
+        el.tag.toLowerCase().includes("u")) &&
+      el.region != "South"
+    ) {
+      return el;
+    }
+  });
+};
