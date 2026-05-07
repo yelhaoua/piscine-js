@@ -22,5 +22,5 @@ const none = (arr, func) => {
       return false;
     }
   }
-  return false;
+  return true;
 };
