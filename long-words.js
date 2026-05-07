@@ -11,6 +11,6 @@ const oneLongWord = (arr) => {
 };
 const noLongWords = (arr) => {
   return arr.every((el) => {
-    return el.length >= 7;
+    return el.length < 7;
   });
 };
