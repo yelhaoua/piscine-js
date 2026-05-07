@@ -37,32 +37,40 @@ const filter5Vowels = (arr) => {
 };
 
 const filter1DistinctVowel = (arr) => {
+  let flag = false;
   return arr.filter((el) => {
-    CheckVoles();
+    const vol = CheckVoles(el.toLowerCase());
+    for (let i = 0; i < vol.length; i++) {
+      console.log(el.includes(vol[i]), el, vol[i]);
+      if (el.includes(vol[i])) {
+        flag = true;
+      }
+    }
+
+    if (!flag) {
+      return el;
+    }
+    flag = false;
   });
 };
 
-function CheckVoles(el) {
+function CheckVoles(str) {
   let flag = true;
-  let voel = "aeiou";
-  for (let i = 0; i < el.length; i++) {
+  let voel = ["a", "e", "i", "o", "u"];
+  for (let i = 0; i < str.length; i++) {
     if (
-      el[i].toLowerCase() === "a" ||
-      ((el[i].toLowerCase() === "e" ||
-        el[i].toLowerCase() === "i" ||
-        el[i].toLowerCase() === "o" ||
-        el[i].toLowerCase() === "u") &&
-        flag)
+      (str[i] === "a" ||
+        str[i] === "e" ||
+        str[i] === "i" ||
+        str[i] === "o" ||
+        str[i] === "u") &&
+      flag
     ) {
-        console.log(el[i]);
-        
-      console.log(voel.split(""));
-
-      flag = false;
+      voel = voel.filter((el) => {
+        return el !== str[i];
+      });
       break;
     }
   }
-  console.log(voel);
+  return voel;
 }
-
-console.log(CheckVoles("Alabama".toLowerCase()));
