@@ -12,7 +12,7 @@ const flatMap = (arr, flat) => {
     if (Array.isArray(flat(arr[i], i, arr))) {
       res.push(...flat(arr[i]));
     } else {
-      res.push(flat(arr[i], i, arr));
+      res.push(flat(arr[i], arr));
     }
   }
 
