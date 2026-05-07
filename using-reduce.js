@@ -12,6 +12,6 @@ const sumOrMul = (arr, num = 0) => {
 
 const funcExec = (arr, num = 0) => {
   return arr.reduce((prev, curnent) => {
-    return curnent();
+    return curnent(prev);
   }, num);
 };
