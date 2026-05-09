@@ -9,7 +9,7 @@ export const build = (amount) => {
     let body = document.querySelector("body");
     div.setAttribute("id", `brick-${count}`);
     if (mid === count) {
-      div.setAttribute("foundation", `true`);
+      div.dataset.foundation = true;
       mid += 3;
     }
     body.appendChild(div);
@@ -22,7 +22,7 @@ export const repair = (...ids) => {
 
   ids.forEach((el) => {
     let div = document.getElementById(el);
-    if (div.hasAttribute("foundation")) {
+    if (div.hasAttribute("data-foundation")) {
       div.dataset.repaired = "true";
     } else {
       div.dataset.repaired = "in progress";
