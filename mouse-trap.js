@@ -1,72 +1,48 @@
-const body = document.body;
-
-let lastCircle = null;
-let box = null;
-
-const CIRCLE_SIZE = 50;
-
 export const createCircle = () => {
-  body.addEventListener("click", (e) => {
-    const div = document.createElement("div");
+  document.addEventListener("click", (e) => {
+    const circle = document.createElement("div");
+    circle.classList.add("circle");
+    circle.style.background = "white";
+    circle.style.left = `${e.clientX - 25}px`;
+    circle.style.top = `${e.clientY - 25}px`;
 
-    div.className = "circle";
-
-    div.style.position = "absolute";
-    div.style.left = e.clientX + "px";
-    div.style.top = e.clientY + "px";
-
-    div.style.backgroundColor = "white";
-
-    body.appendChild(div);
-
-    lastCircle = div;
+    document.body.appendChild(circle);
   });
 };
 
 export const moveCircle = () => {
-  body.addEventListener("mousemove", (e) => {
-    if (!lastCircle || !box) return;
+  document.addEventListener("mousemove", (e) => {
+    const circle = document.querySelector(".circle:last-of-type");
+    const box = document.querySelector(".box");
+    if (!circle || !box) return;
+    const bRect = box.getBoundingClientRect();
 
-    const boxRect = box.getBoundingClientRect();
+    let x = e.clientX - 25;
+    let y = e.clientY - 25;
+    const leftWall = bRect.left + 1;
+    const rightWall = bRect.right - 50 - 1;
+    const topWall = bRect.top + 1;
+    const bottomWall = bRect.bottom - 50 - 1;
+    const isInside =
+      x >= leftWall && x <= rightWall && y >= topWall && y <= bottomWall;
 
-    let x = e.clientX;
-    let y = e.clientY;
-
-    const inside =
-      x > boxRect.left + 1 &&
-      y > boxRect.top + 1 &&
-      x + CIRCLE_SIZE < boxRect.right - 1 &&
-      y + CIRCLE_SIZE < boxRect.bottom - 1;
-
-    let trapped = lastCircle.dataset.trapped === "true";
-
-    if (inside) {
-      lastCircle.style.background = "var(--purple)";
-      lastCircle.dataset.trapped = "true";
-      trapped = true;
+    if (
+      isInside ||
+      circle.style.background === "purple" ||
+      circle.style.background === "var(--purple)"
+    ) {
+      circle.style.background = "var(--purple)";
+      x = Math.max(leftWall, Math.min(x, rightWall));
+      y = Math.max(topWall, Math.min(y, bottomWall));
     }
 
-    if (trapped) {
-      x = Math.max(
-        boxRect.left + 1,
-        Math.min(x, boxRect.right - CIRCLE_SIZE - 1),
-      );
-
-      y = Math.max(
-        boxRect.top + 1,
-        Math.min(y, boxRect.bottom - CIRCLE_SIZE - 1),
-      );
-    }
-
-    lastCircle.style.left = x + "px";
-    lastCircle.style.top = y + "px";
+    circle.style.left = `${x}px`;
+    circle.style.top = `${y}px`;
   });
 };
 
 export const setBox = () => {
-  box = document.createElement("div");
-
-  box.className = "box";
-
-  body.appendChild(box);
+  const box = document.createElement("div");
+  box.classList.add("box");
+  document.body.appendChild(box);
 };
