@@ -31,9 +31,9 @@ export const generateLetters = () => {
     console.log(Math.floor(Math.random() * alpha.length));
     div.textContent = alpha[Math.floor(Math.random() * alpha.length)];
     div.style.fontSize = 11 + i + "px";
-    if (i <= 40) {
+    if (i < 40) {
       div.style.fontWeight = 300;
-    } else if (i > 40 && i <= 80) {
+    } else if (i >= 40 && i < 80) {
       div.style.fontWeight = 400;
     } else {
       div.style.fontWeight = 600;
