@@ -25,9 +25,9 @@ export const getActive = () => {
   return [allClassicalActive, allNotClassicalActive];
 };
 export const getBonannoPisano = () => {
-  const BonannoPisano = Array.from(document.querySelectorAll("#BonannoPisano"));
+  const BonannoPisano = document.getElementById("BonannoPisano");
   const allClassicalactive = Array.from(
-    document.querySelectorAll("a.classical.active:not(#BonannoPisano)"),
+    document.querySelectorAll("a.classical.active"),
   );
   return [BonannoPisano, allClassicalactive];
 };
