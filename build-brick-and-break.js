@@ -31,8 +31,6 @@ export const repair = (...ids) => {
 };
 
 export const destroy = () => {
-  let all = document.querySelectorAll("div");
-  let div = document.getElementById(`brick-${all.length - 2}`);
   let body = document.querySelector("body");
-  body.removeChild(div);
+  body.lastChild.remove();
 };
