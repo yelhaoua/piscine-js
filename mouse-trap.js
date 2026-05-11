@@ -25,7 +25,7 @@ export const moveCircle = () => {
     const bottomWall = bRect.bottom - 50 - 1;
     const isInside =
       x >= leftWall && x <= rightWall && y >= topWall && y <= bottomWall;
-
+    
     if (
       isInside ||
       circle.style.background === "purple" ||
