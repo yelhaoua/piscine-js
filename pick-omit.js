@@ -22,4 +22,5 @@ const omit = (obj, str) => {
       res[key] = value;
     }
   }
+  return res
 };
