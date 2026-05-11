@@ -21,7 +21,7 @@ const fusion = (...obj) => {
         target[key] = val;
       }
     }
-    // return target
+    return target
   };
   return obj.reduce((acc, source) => merge(acc, source), {});
 };
