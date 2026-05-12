@@ -51,7 +51,7 @@ const cartTotal = (obj) => {
   for (let [key, val1] of Object.entries(obj)) {
     res[key] = mapEntries(nutritionDB[key], ([key, val]) => [
       key,
-      +Number((val1 * val) / 100),
+      +Number((val1 * val) / 100).toFixed(3),
     ]);
   }
   return res;
