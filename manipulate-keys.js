@@ -19,7 +19,7 @@ const mapKeys = (obj, func) => {
 const reduceKeys = (obj, func, init = "") => {
   let res = init;
   for (let key in obj) {
-    if (res) {
+    if (res === "") {
       res = key;
     } else {
       res = func(res, key);
