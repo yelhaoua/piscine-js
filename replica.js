@@ -1,6 +1,4 @@
 const replica = (...args) => {
-  console.log(args);
-
   let res = {};
   const isobj = (v) => v && typeof v == "object" && !Array.isArray(v);
   for (let i = 0; i < args.length; i++) {
