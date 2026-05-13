@@ -11,7 +11,7 @@ const deepCopy = (val) => {
   }
   const res = {};
   for (let [key, v] of Object.entries(val)) {
-    res[key] = deepCopy(v);
+    res[key] = deepCopy(val);
   }
   return res;
 };
