@@ -19,7 +19,7 @@ const opThrottle = (
 
   const run = () => {
     if (nextArgs != null) {
-      fn(nextArgs);
+      fn(...nextArgs);
     } else {
       waiting = false;
     }
@@ -33,7 +33,7 @@ const opThrottle = (
       return;
     }
     if (options.leading) {
-      fn(args);
+      fn(...args);
     } else {
       nextArgs = args;
     }
