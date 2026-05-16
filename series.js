@@ -3,5 +3,6 @@ const series = async (arr) => {
   for (const e of arr) {
     out.push(await e());
   }
+  
   return out;
 };
