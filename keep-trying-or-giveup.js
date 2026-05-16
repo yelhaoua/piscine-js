@@ -12,13 +12,13 @@ const retry = (count, callback) => {
 };
 
 export const timeout = (delay, callback) => {
-  return async function (args) {
+  return async function (...args) {
     const timer = new Promise((_, reject) =>
       setTimeout(() => reject(new Error("timeout")), delay),
     );
 
     const action = (async () => {
-      const res = await callback(args);
+      const res = await callback(...args);
       return res;
     })();
 
