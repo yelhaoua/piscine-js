@@ -3,14 +3,12 @@ const queryServers = (serverName, q) => {
   const backup = `/${serverName}_backup?q=${q}`;
   return Promise.race([getJSON(normal), getJSON(backup)]);
 };
-
 const gougleSearch = async (q) => {
   const time = new Promise((_, reject) => {
     setTimeout(() => {
       reject(new Error("timeout"));
     }, 80);
   });
-
   let out = Promise.all([
     queryServers("image", q),
     queryServers("video", q),
@@ -20,6 +18,5 @@ const gougleSearch = async (q) => {
     video,
     web,
   }));
-
   return Promise.race([out, time]);
 };
