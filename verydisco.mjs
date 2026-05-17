@@ -15,7 +15,7 @@ if (process.argv[2].length > 0) {
     }
     res += el.slice(splitsize, el.length);
     res += el.slice(0, splitsize);
-    res += "";
+    res += " ";
   });
 
   console.log(res);
