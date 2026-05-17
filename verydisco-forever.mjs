@@ -18,7 +18,7 @@ const save = async () => {
       }
       res += el.slice(splitsize, el.length);
       res += el.slice(0, splitsize);
-      res += "  ";
+      res += " ";
     });
     writeFile("./verydisco-forever.txt", res.trim());
   }
