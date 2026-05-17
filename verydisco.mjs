@@ -1,4 +1,3 @@
-console.log(process.argv[2]);
 let res = "";
 let arr = [];
 if (process.argv[2].length > 0) {
@@ -6,11 +5,7 @@ if (process.argv[2].length > 0) {
     console.log(process.argv[2]);
   }
   arr = process.argv[2].split(" ");
-  console.log(arr);
   arr.forEach((el) => {
-    if (el.length === 1) {
-      console.log(el);
-    }
     let splitsize;
     let woordlen = el.length;
     if (woordlen % 2 === 0) {
@@ -20,7 +15,7 @@ if (process.argv[2].length > 0) {
     }
     res += el.slice(splitsize, el.length);
     res += el.slice(0, splitsize);
-    res += " ";
+    res += "";
   });
 
   console.log(res);
