@@ -20,7 +20,7 @@ const reverse = async (content) => {
 
     res += el.slice(splitsize, el.length);
     res += el.slice(0, splitsize);
-    res += "  ";
+    res += " ";
   });
 
   console.log(res);
