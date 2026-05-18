@@ -24,7 +24,7 @@ try {
   finle = finle.sort((a, b) => a.localeCompare(b));
 
   finle = finle.map((el, ind) => {
-    return ind  + ". " + el;
+    return ind + 1 + ". " + el;
   });
 
   await writeFile("vip.txt", finle.join("\n"));
