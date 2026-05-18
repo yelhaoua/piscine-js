@@ -12,6 +12,7 @@ if (fileencode === "encode") {
 } else if (fileencode === "decode") {
   await writeFile(
     fileName ? fileName : "clear.txt",
+    
     Buffer.from(data, "base64").toString("utf-8"),
   );
 }
