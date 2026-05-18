@@ -5,7 +5,7 @@ let filepathe = process.argv[2];
 let fileencode = process.argv[3];
 let fileName = process.argv[4];
 
-const data = await readFile(filepathe);
+const data = await readFile(filepathe ,"utf-8");
 
 if (fileencode === "encode") {
   await writeFile(
