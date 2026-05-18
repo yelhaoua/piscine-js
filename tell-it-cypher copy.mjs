@@ -8,14 +8,7 @@ let fileName = process.argv[4];
 const data = await readFile(filepathe, "utf-8");
 
 if (fileencode === "encode") {
-  await writeFile(
-    fileName ? fileName : "cypher.txt",
-    Buffer.from(data).toString("base64"),
-  );
+  await writeFile("cypher.txt", Buffer.from(data).toString("base64"));
 } else if (fileencode === "decode") {
-  await writeFile(
-    fileName ? fileName : "clear.txt",
-    Buffer.from(data, "base64").toString("utf-8"),
-  );
-  
+  await writeFile("clear.txt", Buffer.from(data, "base64").toString("utf-8"));
 }
