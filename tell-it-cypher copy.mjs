@@ -1,21 +1,24 @@
-import { readFile, writeFile, readdir } from "fs/promises";
-import { buffer } from "stream/consumers";
+import { readFile } from "node:fs/promises";
+import { writeFile } from "node:fs/promises";
+import { Buffer } from "node:buffer";
 
-let filepathe = process.argv[2];
-let fileencode = process.argv[3];
-let fileName = process.argv[4];
+let out = process.argv[4];
+const name = process.argv[2];
+const cypher = process.argv[3];
 
-if (!fileName) {
-  fileName = fileencode === "encode" ? "cypher.txt" : "clear.txt";
+if (!out) {
+  out = cypher === "encode" ? "cypher.txt" : "clear.txt";
 }
-try {
-  const data = await readFile(filepathe, "utf-8");
 
-  if (fileencode === "encode") {
-    await writeFile(fileName, Buffer.from(data).toString("base64"));
-  } else if (fileencode === "decode") {
-    await writeFile(fileName, Buffer.from(data, "base64").toString("utf-8"));
+try {
+  let file = await readFile(name, { encoding: "utf8" });
+  if (cypher == "encode") {
+    file = Buffer.from(file).toString("base64");
+    await writeFile(out, file);
+  } else {
+    file = Buffer.from(file, "base64").toString("utf8");
+    await writeFile(out, file);
   }
-} catch (error) {
-  console.log(error);
+} catch (err) {
+  console.error(err);
 }
