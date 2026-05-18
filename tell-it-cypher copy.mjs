@@ -18,6 +18,7 @@ try {
   } else {
     file = Buffer.from(file, "base64").toString("utf8");
     await writeFile(out, file);
+    
   }
 } catch (err) {
   console.error(err);
