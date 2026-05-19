@@ -20,7 +20,7 @@ const server = createServer((req, res) => {
     });
     req.on("end", async () => {
       try {
-        await writeFile(`./guests${file}.json`, body);
+        await writeFile(`./guests/${file}.json`, body);
         res.statusCode = 201;
         res.end(body);
       } catch (error) {
