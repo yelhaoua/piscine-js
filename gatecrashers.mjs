@@ -15,7 +15,7 @@ const server = createServer((req, res) => {
     return res.end(JSON.stringify({ error: "method not allowed" }));
   }
 
-  // 🔐 AUTH CHECK
+  // ---------------- AUTH ----------------
   const auth = req.headers.authorization;
 
   if (!auth || !auth.startsWith("Basic ")) {
@@ -23,8 +23,7 @@ const server = createServer((req, res) => {
     return res.end(JSON.stringify({ error: "Authorization Required" }));
   }
 
-  const base64 = auth.split(" ")[1];
-  const decoded = Buffer.from(base64, "base64").toString();
+  const decoded = Buffer.from(auth.split(" ")[1], "base64").toString();
   const [username, pass] = decoded.split(":");
 
   if (!users.has(username) || pass !== password) {
@@ -32,9 +31,8 @@ const server = createServer((req, res) => {
     return res.end(JSON.stringify({ error: "Authorization Required" }));
   }
 
-  // ✅ AUTHORIZED
+  // ---------------- BODY ----------------
   const file = req.url.slice(1);
-
   let body = "";
 
   req.on("data", (chunk) => {
@@ -45,18 +43,22 @@ const server = createServer((req, res) => {
     try {
       await mkdir("./guests", { recursive: true });
 
-      let parsed;
+      let parsedBody;
       try {
-        parsed = JSON.parse(body);
+        parsedBody = JSON.parse(body);
       } catch {
-        parsed = body;
+        parsedBody = body;
       }
 
-      await writeFile(`./guests/${file}.json`, JSON.stringify(parsed, null, 2));
+      // save file
+      await writeFile(
+        `./guests/${file}.json`,
+        JSON.stringify(parsedBody, null, 2),
+      );
 
-      // 🔥 IMPORTANT: 200 not 201 in example
+      // response MUST be object (not empty string)
       res.statusCode = 200;
-      res.end(JSON.stringify(parsed));
+      res.end(JSON.stringify(parsedBody));
     } catch (error) {
       res.statusCode = 500;
       res.end(JSON.stringify({ error: "server failed" }));
@@ -65,5 +67,5 @@ const server = createServer((req, res) => {
 });
 
 server.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });
