@@ -1,71 +1,100 @@
-import { createServer } from "node:http";
+import http from "node:http";
 import { writeFile, mkdir } from "node:fs/promises";
 
-const port = 5000;
+const SERVER_PORT = 5000;
+const DIRECTORY_PATH = "./guests";
 
-const users = new Set(["Caleb_Squires", "Tyrique_Dalton", "Rahima_Young"]);
+const allowedUsers = ["Caleb_Squires", "Tyrique_Dalton", "Rahima_Young"];
 
-const password = "abracadabra";
+const passwordKey = "abracadabra";
 
-const server = createServer((req, res) => {
-  res.setHeader("Content-Type", "application/json");
-
-  if (req.method !== "POST") {
-    res.statusCode = 405;
-    return res.end(JSON.stringify({ error: "method not allowed" }));
-  }
-
-  // ---------------- AUTH ----------------
-  const auth = req.headers.authorization;
-
-  if (!auth || !auth.startsWith("Basic ")) {
-    res.statusCode = 401;
-    return res.end(JSON.stringify({ error: "Authorization Required" }));
-  }
-
-  const decoded = Buffer.from(auth.split(" ")[1], "base64").toString();
-  const [username, pass] = decoded.split(":");
-
-  if (!users.has(username) || pass !== password) {
-    res.statusCode = 401;
-    return res.end(JSON.stringify({ error: "Authorization Required" }));
-  }
-
-  // ---------------- BODY ----------------
-  const file = req.url.slice(1);
-  let body = "";
-
-  req.on("data", (chunk) => {
-    body += chunk.toString();
+const sendResponse = (response, statusCode, data) => {
+  response.writeHead(statusCode, {
+    "Content-Type": "application/json",
   });
 
-  req.on("end", async () => {
-    try {
-      await mkdir("./guests", { recursive: true });
+  response.end(JSON.stringify(data));
+};
 
-      let parsedBody;
-      try {
-        parsedBody = JSON.parse(body);
-      } catch {
-        parsedBody = body;
-      }
-
-      // save file
-      await writeFile(
-        `./guests/${file}.json`,
-        JSON.stringify(parsedBody, null, 2),
-      );
-
-      // response MUST be object (not empty string)
-      res.statusCode = 200;
-      res.end(JSON.stringify(parsedBody));
-    } catch (error) {
-      res.statusCode = 500;
-      res.end(JSON.stringify({ error: "server failed" }));
-    }
+const sendUnauthorized = (response) => {
+  response.writeHead(401, {
+    "Content-Type": "application/json",
   });
+
+  response.end("Authorization Required");
+};
+
+const validateAuthorization = (requestHeaders) => {
+  const authorizationHeader = requestHeaders.authorization;
+
+  if (!authorizationHeader) return false;
+
+  const authParts = authorizationHeader.split(" ");
+
+  if (authParts.length !== 2 || authParts[0] !== "Basic") {
+    return false;
+  }
+
+  let decodedCredentials = "";
+
+  try {
+    decodedCredentials = Buffer.from(authParts[1], "base64").toString("utf8");
+  } catch {
+    return false;
+  }
+
+  const [username, password] = decodedCredentials.split(":");
+
+  return allowedUsers.includes(username) && password === passwordKey;
+};
+
+const parseRequestBody = (request) => {
+  try {
+    return JSON.parse(request.headers.body || "{}");
+  } catch {
+    return null;
+  }
+};
+
+const appServer = http.createServer(async (request, response) => {
+  const { method, url } = request;
+
+  if (method !== "POST") {
+    return sendResponse(response, 405, {
+      error: "Method not allowed",
+    });
+  }
+
+  if (!validateAuthorization(request.headers)) {
+    return sendUnauthorized(response);
+  }
+
+  const guestFileName = url.slice(1);
+
+  if (!guestFileName) {
+    return sendResponse(response, 400, {
+      error: "Invalid guest name",
+    });
+  }
+
+  const requestBody = parseRequestBody(request);
+
+  if (!requestBody) {
+    return sendResponse(response, 400, {
+      error: "Invalid JSON",
+    });
+  }
+
+  await mkdir(DIRECTORY_PATH, { recursive: true });
+
+  await writeFile(
+    `${DIRECTORY_PATH}/${guestFileName}.json`,
+    JSON.stringify(requestBody, null, 2),
+  );
+
+  return sendResponse(response, 200, requestBody);
 });
 
-server.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+appServer.listen(SERVER_PORT, () => {
+  console.log(`Server running on port ${SERVER_PORT}`);
 });
